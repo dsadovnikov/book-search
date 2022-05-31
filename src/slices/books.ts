@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import BookService from "../api/BookService";
-import { BooksSlice, IBooks } from "../types/Books";
+import { BooksSlice, FetchBooksProps, IBooks } from "../types/Books";
 
 const initialState: BooksSlice = {
   books: {
@@ -13,9 +13,9 @@ const initialState: BooksSlice = {
 
 export const fetchBooks = createAsyncThunk(
   "books/fetchAll",
-  async (searchQuery: string, thunkAPI) => {
+  async (props: FetchBooksProps, thunkAPI) => {
     try {
-      const response = await BookService.getBooks(searchQuery);
+      const response = await BookService.getBooks(props);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue("Can't fetch books");

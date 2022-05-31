@@ -1,7 +1,8 @@
+import { nanoid } from "nanoid";
 import React from "react";
-import { IBook } from "../../types/Book";
 import { IBooks } from "../../types/Books";
 import BookCard from "../BookCard/BookCard";
+import styles from "./BookList.module.scss";
 
 interface BookListProps {
   books: IBooks;
@@ -9,9 +10,9 @@ interface BookListProps {
 
 const BookList = (props: BookListProps): JSX.Element => {
   return (
-    <div>
+    <div className={styles.bookList}>
       {props.books.items.map((book) => (
-        <BookCard key={book.id} book={book} />
+        <BookCard key={nanoid()} book={book} />
       ))}
     </div>
   );

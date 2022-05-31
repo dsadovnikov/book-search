@@ -1,0 +1,17 @@
+.bookList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 30px;
+  justify-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  @media (max-width: 1260px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+  }
+}

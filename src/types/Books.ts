@@ -10,3 +10,9 @@ export interface BooksSlice {
   isLoading: boolean;
   error: string;
 }
+
+export interface FetchBooksProps {
+  searchQuery: string;
+  searchCategory: string;
+  searchSorting: string;
+}
