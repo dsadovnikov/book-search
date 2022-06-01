@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchBooks } from "../../slices/books";
 import { AppDispatch } from "../../store";
 import styles from "./BookSearch.module.scss";
@@ -10,9 +11,11 @@ const BookSearch = () => {
   const [searchSorting, setSearchSorting] = useState<string>("relevance");
 
   const dispatch = useDispatch<AppDispatch>();
+  const router = useNavigate();
 
   const getBooks = (e: React.MouseEvent<HTMLButtonElement>) => {
     dispatch(fetchBooks({ searchQuery, searchCategory, searchSorting }));
+    router(`/books`);
   };
 
   return (
@@ -25,7 +28,7 @@ const BookSearch = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button className={styles.bookSearch__submit} onClick={getBooks}>
-          Найти
+          Search
         </button>
       </div>
       <div className={styles.bookSearch__container}>

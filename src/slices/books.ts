@@ -29,6 +29,7 @@ export const booksSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchBooks.pending.type]: (state) => {
+      state.books = initialState.books;
       state.isLoading = true;
     },
     [fetchBooks.fulfilled.type]: (state, action: PayloadAction<IBooks>) => {

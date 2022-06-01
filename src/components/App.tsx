@@ -1,20 +1,14 @@
 import React from "react";
-import { useAppSelector } from "../hooks";
-import BookList from "./BookList/BookList";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./AppRouter/AppRouter";
 import BookSearch from "./BookSearch/BookSearch";
 
 function App() {
-  const { books, isLoading, error } = useAppSelector(
-    (state) => state.booksSlice
-  );
-
   return (
-    <div className="App">
+    <BrowserRouter>
       <BookSearch />
-      {isLoading && <h1>Идёт загрузка...</h1>}
-      {error && <h1>{error}</h1>}
-      <BookList books={books} />
-    </div>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 

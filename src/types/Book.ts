@@ -11,3 +11,13 @@ export interface IBook {
     };
   };
 }
+
+export interface BookSlice {
+  book: IBook;
+  isLoading: boolean;
+  error: string;
+}
+
+export interface FetchBookByIdProps {
+  id: string;
+}

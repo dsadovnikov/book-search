@@ -17,4 +17,12 @@ export default class BookService {
 
     return response;
   }
+
+  static async getBookById(id: string | undefined) {
+    const response = await axios({
+      method: "get",
+      url: "https://www.googleapis.com/books/v1/volumes/" + id,
+    });
+    return response;
+  }
 }
