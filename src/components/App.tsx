@@ -1,7 +1,7 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./AppRouter/AppRouter";
-import BookSearch from "./BookSearch/BookSearch";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './AppRouter';
+import BookSearch from './BookSearch/BookSearch';
 
 function App() {
   return (

@@ -1,41 +1,57 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { fetchBooks } from "../../slices/books";
-import { AppDispatch } from "../../store";
-import styles from "./BookSearch.module.scss";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
+import { booksSlice } from '../../slices/books';
+import { AppDispatch } from '../../store';
+import styles from './BookSearch.module.scss';
 
 const BookSearch = () => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchCategory, setSearchCategory] = useState<string>("all");
-  const [searchSorting, setSearchSorting] = useState<string>("relevance");
+  const { bookSearchParams } = useAppSelector((state) => state.booksSlice);
 
+  const {
+    setSearchQuery,
+    setSearchCategory,
+    setSearchSorting,
+    clearList,
+    setIsLocked,
+  } = booksSlice.actions;
   const dispatch = useDispatch<AppDispatch>();
   const router = useNavigate();
 
-  const getBooks = (e: React.MouseEvent<HTMLButtonElement>) => {
-    dispatch(fetchBooks({ searchQuery, searchCategory, searchSorting }));
-    router(`/books`);
+  let searchDisabled: boolean = bookSearchParams.searchQuery ? false : true;
+
+  const onSubmit = (e: React.FormEvent) => {
+    if (!searchDisabled) {
+      e.preventDefault();
+      dispatch(clearList());
+      dispatch(setIsLocked(false));
+      router(`/books`);
+    }
   };
 
   return (
-    <div className={styles.bookSearch}>
+    <form className={styles.bookSearch} onSubmit={onSubmit}>
       <div className={styles.bookSearch__container}>
         <input
           className={styles.bookSearch__input}
-          value={searchQuery}
+          value={bookSearchParams.searchQuery}
           placeholder="Search for a book"
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => dispatch(setSearchQuery(e.target.value))}
         />
-        <button className={styles.bookSearch__submit} onClick={getBooks}>
+        <button
+          className={styles.bookSearch__submit}
+          disabled={searchDisabled}
+          type="submit"
+        >
           Search
         </button>
       </div>
       <div className={styles.bookSearch__container}>
         <select
           name="category"
-          value={searchCategory}
-          onChange={(e) => setSearchCategory(e.target.value)}
+          value={bookSearchParams.searchCategory}
+          onChange={(e) => dispatch(setSearchCategory(e.target.value))}
         >
           <option value="all">All</option>
           <option value="art">Art</option>
@@ -47,14 +63,14 @@ const BookSearch = () => {
         </select>
         <select
           name="sorting"
-          value={searchSorting}
-          onChange={(e) => setSearchSorting(e.target.value)}
+          value={bookSearchParams.searchSorting}
+          onChange={(e) => dispatch(setSearchSorting(e.target.value))}
         >
           <option value="relevance">Relevance</option>
           <option value="newest">Newest</option>
         </select>
       </div>
-    </div>
+    </form>
   );
 };
 

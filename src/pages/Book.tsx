@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import BookDetails from "../components/BookDetails/BookDetails";
-import { useAppSelector } from "../hooks";
-import { fetchBookById } from "../slices/book";
-import { AppDispatch } from "../store";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import BookDetails from '../components/BookDetails/BookDetails';
+import { useAppSelector } from '../hooks';
+import { fetchBookById } from '../slices/book';
+import { AppDispatch } from '../store';
 
 const Book = () => {
   const { book, isLoading, error } = useAppSelector((state) => state.bookSlice);

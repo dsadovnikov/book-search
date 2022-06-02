@@ -1,25 +1,25 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import BookService from "../api/BookService";
-import { BookSlice, IBook } from "../types/Book";
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import BookService from '../api/BookService';
+import { BookSlice, IBook } from '../types/Book';
 
 const initialState: BookSlice = {
   book: {
-    id: "",
+    id: '',
     volumeInfo: {
-      title: "",
-      subtitle: "",
+      title: '',
+      subtitle: '',
       authors: [],
-      description: "",
+      description: '',
       categories: [],
-      imageLinks: { thumbnail: "" },
+      imageLinks: { thumbnail: '' },
     },
   },
   isLoading: false,
-  error: "",
+  error: '',
 };
 
 export const fetchBookById = createAsyncThunk(
-  "book/fetchBookById",
+  'book/fetchBookById',
   async (id: string | undefined, thunkAPI) => {
     try {
       const response = await BookService.getBookById(id);
@@ -31,7 +31,7 @@ export const fetchBookById = createAsyncThunk(
 );
 
 export const bookSlice = createSlice({
-  name: "book",
+  name: 'book',
   initialState,
   reducers: {},
   extraReducers: {
@@ -41,7 +41,7 @@ export const bookSlice = createSlice({
     },
     [fetchBookById.fulfilled.type]: (state, action: PayloadAction<IBook>) => {
       state.isLoading = false;
-      state.error = "";
+      state.error = '';
       state.book = action.payload;
     },
     [fetchBookById.rejected.type]: (state, action: PayloadAction<string>) => {

@@ -1,6 +1,6 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import bookSlice from "./slices/book";
-import booksSlice from "./slices/books";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import bookSlice from './slices/book';
+import booksSlice from './slices/books';
 
 const rootReducer = combineReducers({
   bookSlice,
@@ -15,4 +15,4 @@ export const setupStore = () => {
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppStore["dispatch"];
+export type AppDispatch = AppStore['dispatch'];

@@ -1,7 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { IBook } from "../../types/Book";
-import styles from "./BookDetails.module.scss";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { IBook } from '../../types/Book';
+import styles from './BookDetails.module.scss';
 
 interface BookDetailsProps {
   book: IBook;
@@ -10,8 +10,8 @@ interface BookDetailsProps {
 const BookDetails = ({ book }: BookDetailsProps) => {
   const router = useNavigate();
 
-  const authors: string = book.volumeInfo.authors?.join(", ");
-  const categories: string = book.volumeInfo.categories?.join(", ");
+  const authors: string = book.volumeInfo.authors?.join(', ');
+  const categories: string = book.volumeInfo.categories?.join(', ');
 
   const back = (e: React.MouseEvent<HTMLButtonElement>) => {
     router(`/books`);
