@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { booksSlice } from '../../slices/books';
 import { AppDispatch } from '../../store';
+import Button, { ButtonType } from '../UI/Button/Button';
 import styles from './BookSearch.module.scss';
 
-const BookSearch = () => {
+const BookSearch = (): JSX.Element => {
   const { bookSearchParams } = useAppSelector((state) => state.booksSlice);
 
   const {
@@ -39,13 +40,11 @@ const BookSearch = () => {
           placeholder="Search for a book"
           onChange={(e) => dispatch(setSearchQuery(e.target.value))}
         />
-        <button
-          className={styles.bookSearch__submit}
-          disabled={searchDisabled}
-          type="submit"
-        >
-          Search
-        </button>
+        <div className={styles.bookSearch__submit}>
+          <Button disabled={searchDisabled} type={ButtonType.submit}>
+            Search
+          </Button>
+        </div>
       </div>
       <div className={styles.bookSearch__container}>
         <select

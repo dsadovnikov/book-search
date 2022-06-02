@@ -6,7 +6,7 @@ import { useAppSelector } from '../hooks';
 import { fetchBookById } from '../slices/book';
 import { AppDispatch } from '../store';
 
-const Book = () => {
+const Book = (): JSX.Element => {
   const { book, isLoading, error } = useAppSelector((state) => state.bookSlice);
   const { id } = useParams<{ id?: string }>();
   const dispatch = useDispatch<AppDispatch>();

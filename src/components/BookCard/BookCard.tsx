@@ -17,7 +17,8 @@ const BookCard = ({ book }: BookCardProps): JSX.Element => {
   return (
     <div
       className={styles.bookCard}
-      onClick={() => router(`/books/${book.id}`)}
+      tabIndex={0}
+      onClick={(e: React.MouseEvent) => router(`/books/${book.id}`)}
     >
       <img
         className={styles.bookCard__image}
