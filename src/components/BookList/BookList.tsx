@@ -12,9 +12,8 @@ const BookList = ({ books }: BookListProps): JSX.Element => {
   return (
     <div>
       <div className={styles.bookList}>
-        {books.items.map((book) => (
-          <BookCard key={nanoid()} book={book} />
-        ))}
+        {books?.items[0]?.volumeInfo &&
+          books.items.map((book) => <BookCard key={nanoid()} book={book} />)}
       </div>
     </div>
   );

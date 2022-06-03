@@ -23,7 +23,6 @@ export const fetchBooks = createAsyncThunk(
   'books/fetchAll',
   async (props: BookSearchParams, thunkAPI) => {
     try {
-      console.log('fetch');
       const response = await BookService.getBooks(props);
       return response.data;
     } catch (e) {
