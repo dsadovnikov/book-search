@@ -3,7 +3,7 @@ import BookList from '../components/BookList/BookList';
 import LoadingSection from '../components/LoadingSection/LoadingSection';
 import { useAppSelector } from '../hooks';
 
-const Books = (): JSX.Element => {
+const Search = (): JSX.Element => {
   const { books } = useAppSelector((state) => state.booksSlice);
 
   return (
@@ -14,4 +14,4 @@ const Books = (): JSX.Element => {
   );
 };
 
-export default Books;
+export default Search;

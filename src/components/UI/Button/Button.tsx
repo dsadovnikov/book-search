@@ -9,7 +9,7 @@ export enum ButtonType {
 
 interface ButtonProps {
   type: ButtonType;
-  onClick?: (props: any) => void;
+  onClick?: (props: any) => any;
   disabled?: boolean;
   children?: React.ReactNode;
 }
